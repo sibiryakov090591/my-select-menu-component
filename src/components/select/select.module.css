@@ -1,0 +1,43 @@
+.wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.title {
+    margin: 0;
+    border-bottom: 1px solid #919191;
+    background-color: #fff;
+    color: #919191;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding: 10px 30px 10px 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.arrow_wrapper {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    cursor: pointer;
+}
+
+.arrow_1,
+.arrow_2 {
+    width: 8px;
+    height: 2px;
+    background-color: #919191;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(-4px) rotate(40deg);
+}
+
+.arrow_2 {
+    transform: rotate(-40deg);
+}
