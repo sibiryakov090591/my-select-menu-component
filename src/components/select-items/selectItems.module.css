@@ -1,5 +1,6 @@
 .wrapper {
     width: 100%;
+    min-height: 30px;
     color: #696969;
     position: absolute;
     top: 45px;
@@ -12,7 +13,11 @@
     border-bottom: 1px solid #d4d4d4;
     padding: 10px;
     cursor: pointer;
-    transition: .3s all;
+    transition: .3s background-color;
+}
+
+.item:focus {
+    outline: 1px solid #d4d4d4;
 }
 
 .item:first-child {

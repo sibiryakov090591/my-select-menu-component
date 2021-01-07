@@ -8,21 +8,24 @@ export type SelectPropsType = {
 
 export const Select: React.FC<SelectPropsType> = (props) => {
 
-    const [title, setTitle] = useState<string>("City");
+    const [title, setTitle] = useState<string>("Your city");
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
     const setCollapse = () => {
-        if (props.titles.length > 0) setIsCollapsed(!isCollapsed)
+        setIsCollapsed(!isCollapsed)
     }
 
     const setCityTitle = (newTitle: string) => {
         setTitle(newTitle)
-        setIsCollapsed(false)
     }
 
     const onEnterPress = (event: React.KeyboardEvent<HTMLHeadingElement>) => {
         if (event.key === "Enter") {
             setIsCollapsed(!isCollapsed)
+        }
+        if (event.key === "ArrowDown") {
+            setIsCollapsed(true)
+            //
         }
     }
 
@@ -30,18 +33,18 @@ export const Select: React.FC<SelectPropsType> = (props) => {
         <div className={styles.wrapper}>
             <h3 tabIndex={1} className={styles.title}
                 onClick={setCollapse}
-                onKeyPress={(e) => {onEnterPress(e)}}>{title}</h3>
-            {
-                props.titles.length > 0 &&
-                <div className={styles.arrow_wrapper}
-                     onClick={setCollapse}>
-                    <div className={styles.arrow_1}></div>
-                    <div className={styles.arrow_2}></div>
-                </div>
-            }
+                onKeyUp={(e) => {
+                    onEnterPress(e)
+                }}>{title}</h3>
+            <div className={styles.arrow_wrapper}
+                 onClick={setCollapse}>
+                <div className={styles.arrow_1}></div>
+                <div className={styles.arrow_2}></div>
+            </div>
             {
                 isCollapsed && <SelectItems titles={props.titles}
                                             callback={setCityTitle}
+                                            setIsCollapsed={setCollapse}
                                             activeTitle={title}/>
             }
         </div>

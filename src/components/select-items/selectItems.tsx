@@ -5,6 +5,7 @@ type SelectItemsType = {
     titles: Array<string>
     callback: (s: string) => void
     activeTitle: string
+    setIsCollapsed: () => void
 }
 
 export const SelectItems: React.FC<SelectItemsType> = (props) => {
@@ -14,16 +15,24 @@ export const SelectItems: React.FC<SelectItemsType> = (props) => {
     const setTitle = (item: string) => {
         setActiveItem(item)
         props.callback(item)
+        props.setIsCollapsed()
     }
 
-    const onMouseEnterFunc = () => {
-        setActiveItem("")
+    const onMouseEnterFunc = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        setActiveItem(e.currentTarget.text)
     }
 
     const onEnterPress = (event: React.KeyboardEvent<HTMLAnchorElement>, item: string) => {
         if (event.key === "Enter") {
             setActiveItem(item)
             props.callback(item)
+            props.setIsCollapsed()
+        }
+        if (event.key === "Escape") {
+            props.setIsCollapsed()
+        }
+        if (event.key === "ArrowDown") {
+            //
         }
     }
 
@@ -35,7 +44,7 @@ export const SelectItems: React.FC<SelectItemsType> = (props) => {
                               className={activeItem === i ? (styles.item + " " + styles.active) : styles.item}
                               onClick={() => {setTitle(i)}}
                               onMouseEnter={onMouseEnterFunc}
-                              onKeyPress={(e) => onEnterPress(e, i)}
+                              onKeyUp={(e) => onEnterPress(e, i)}
                               key={i}>{i}</a>
                 })
             }

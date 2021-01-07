@@ -20,6 +20,10 @@
     position: relative;
 }
 
+.title:focus {
+    outline: 1px solid #d4d4d4;
+}
+
 .arrow_wrapper {
     position: absolute;
     top: 50%;
